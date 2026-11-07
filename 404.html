@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MERAJXO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; background: #000; }
+    #fallback {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 18px;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    .logo {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0A84FF 0%, #5E5CE6 55%, #FF375F 100%);
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    .label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.94); opacity: 0.7; }
+    }
+  </style>
+</head>
+<body>
+  <div id="fallback">
+    <div class="logo"></div>
+    <div class="label">Opening MERAJXO…</div>
+  </div>
+
+  <script>
+    (function () {
+      // ── SPA fallback for GitHub Pages ────────────────────────────
+      //
+      // GitHub Pages serves this file (HTTP 404) for any URL that
+      // doesn't match a real static file — including all our Flutter
+      // deep-link routes like /MerajXo/project/foo.
+      //
+      // We need to redirect to the SPA root (the directory containing
+      // index.html). We DON'T hardcode the path — instead we probe
+      // candidate roots by HEAD-fetching main.dart.js. The first
+      // candidate that returns 200 is the SPA root.
+      //
+      // Candidate roots (longest first):
+      //   /MerajXo/project/foo  →  try /MerajXo/, then /, then done
+      //   /project/foo           →  try /, then done
+      //
+      // This makes the 404.html portable across project pages and
+      // user pages without editing anything.
+
+      var requestedPath = window.location.pathname + window.location.search + window.location.hash;
+
+      // Build candidate SPA roots from the current pathname.
+      // For /MerajXo/project/foo → candidates = ["/MerajXo/", "/"]
+      // For /project/foo          → candidates = ["/"]
+      var segments = window.location.pathname.split('/').filter(function (s) { return s.length > 0; });
+      var candidates = ['/'];
+      for (var i = segments.length; i >= 1; i--) {
+        candidates.unshift('/' + segments.slice(0, i).join('/') + '/');
+      }
+      // Deduplicate.
+      candidates = candidates.filter(function (v, idx, arr) { return arr.indexOf(v) === idx; });
+
+      function tryCandidate(idx) {
+        if (idx >= candidates.length) {
+          // All candidates failed — just go to domain root.
+          window.location.replace('/');
+          return;
+        }
+        var root = candidates[idx];
+        var probeUrl = root + 'main.dart.js';
+        fetch(probeUrl, { method: 'HEAD' })
+          .then(function (res) {
+            if (res.ok) {
+              // Found the SPA root. Save the requested URL and redirect.
+              try { sessionStorage.setItem('mxo_redirect', requestedPath); } catch (_) {}
+              window.location.replace(root);
+            } else {
+              tryCandidate(idx + 1);
+            }
+          })
+          .catch(function () {
+            tryCandidate(idx + 1);
+          });
+      }
+
+      tryCandidate(0);
+    })();
+  </script>
+</body>
+</html>
