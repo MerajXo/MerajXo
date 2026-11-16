@@ -21,10 +21,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="description"
-    content="MERAJXO — Creative portfolio. Projects, scripts, effects, software and music in one place.">
+    content="MERAJXO — Creative portfolio of MD Meraju Islam. Motion graphics, visual effects, graphic design, automation scripts, software tools, and music.">
 
-  <!-- Google indexing verification -->
+  <!-- Google Search Console Verification -->
   <meta name="google-site-verification" content="Mz7ki6TXUG1LIz_OwY_8MZOAot7FHsR9wj4jdAGErd0" />
+
   <!-- iOS meta tags for mobile web app -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -37,7 +38,65 @@
   <!-- Web App Manifest — gives install-to-home-screen + theme color -->
   <link rel="manifest" href="manifest.json">
 
-  <title>MERAJXO</title>
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://merajxo.github.io/MerajXo/">
+
+  <title>MERAJXO — Creative Portfolio of MD Meraju Islam</title>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       STATIC Open Graph + Twitter Card meta tags
+       These are in the RAW HTML — Telegram, WhatsApp, Facebook,
+       Discord, LinkedIn, etc. scrape these WITHOUT executing
+       JavaScript. Without these, link shares show no thumbnail.
+
+       Flutter's app_config_seo_web.dart updates these per-route
+       AFTER JS loads, but scrapers that don't run JS see these
+       static defaults instead.
+       ═══════════════════════════════════════════════════════════════ -->
+
+  <!-- Open Graph (Facebook, LinkedIn, Telegram, WhatsApp) -->
+  <meta property="og:title" content="MERAJXO — Creative Portfolio">
+  <meta property="og:description" content="Motion graphics, visual effects, graphic design, automation scripts, software tools, and music by MD Meraju Islam.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://merajxo.github.io/MerajXo/">
+  <meta property="og:site_name" content="MERAJXO">
+  <!-- OG image — use the repo logo as the default preview thumbnail.
+       For per-route thumbnails, the JS SEO updater overrides this
+       after Flutter loads (but scrapers that don't run JS see this). -->
+  <meta property="og:image" content="https://raw.githubusercontent.com/m34official/MXO/main/appConfig/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MERAJXO — Creative Portfolio">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MERAJXO — Creative Portfolio">
+  <meta name="twitter:description" content="Motion graphics, visual effects, graphic design, automation scripts, software tools, and music by MD Meraju Islam.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/m34official/MXO/main/appConfig/logo.png">
+  <meta name="twitter:site" content="@merajxo">
+  <meta name="twitter:creator" content="@merajxo">
+
+  <!-- Structured data for Google rich results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "MD Meraju Islam",
+    "url": "https://merajxo.github.io/MerajXo/",
+    "image": "https://raw.githubusercontent.com/m34official/MXO/main/appConfig/logo.png",
+    "jobTitle": "Motion Designer & Creative Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "MERAJXO"
+    },
+    "sameAs": [
+      "https://www.instagram.com/merajxo",
+      "https://www.youtube.com/@merajxo",
+      "https://github.com/m34official"
+    ],
+    "email": "mailto:merajxo@gmail.com"
+  }
+  </script>
 
   <style>
     /* ── iOS-inspired boot loader ─────────────────────────────── */
@@ -117,6 +176,32 @@
 </head>
 
 <body>
+  <!-- Crawlable content for search engines (Flutter renders via JS).
+       Googlebot and other crawlers that don't execute JavaScript
+       see this text instead of an empty page. -->
+  <noscript>
+    <div style="padding: 40px; font-family: sans-serif; color: #fff; background: #000; max-width: 600px; margin: 0 auto;">
+      <h1>MD Meraju Islam — Motion Designer & Creative Developer</h1>
+      <p>Creative portfolio showcasing motion graphics, visual effects, graphic design, automation scripts, software tools, and music. Based in Bangladesh.</p>
+      <h2>Work</h2>
+      <ul>
+        <li>Motion Graphics & Title Animations</li>
+        <li>Visual Effects & Compositing</li>
+        <li>Graphic Design & Branding</li>
+        <li>Automation Scripts (PowerShell, Python)</li>
+        <li>Flutter App Development</li>
+      </ul>
+      <h2>Connect</h2>
+      <ul>
+        <li>Instagram: https://www.instagram.com/merajxo</li>
+        <li>YouTube: https://www.youtube.com/@merajxo</li>
+        <li>GitHub: https://github.com/m34official</li>
+        <li>Email: merajxo@gmail.com</li>
+      </ul>
+      <p>Visit the <a href="https://merajxo.github.io/MerajXo/">MERAJXO Portfolio</a> to see full work.</p>
+    </div>
+  </noscript>
+
   <!-- Boot loader — minimal iOS-style. -->
   <div id="loading-container">
     <div class="wordmark">MerajXO</div>
@@ -152,8 +237,6 @@
 
     function appProgress(value, label) {
       try {
-        // No progress bar — the spinner IS the progress indicator.
-        // Just cross-fade the label text.
         if (_label && label) {
           _label.style.opacity = '0';
           setTimeout(function () {

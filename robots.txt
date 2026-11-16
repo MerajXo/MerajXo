@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://merajxo.github.io/MerajXo/sitemap.xml
