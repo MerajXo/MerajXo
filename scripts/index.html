@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!--
+    The /MerajXo/ placeholder is substituted by the Flutter
+    build tool at build time using the value you pass to
+    `--base-href`. Examples:
+
+      flutter build web --base-href "/MerajXo/"   →  <base href="/MerajXo/">
+      flutter build web --base-href "/"           →  <base href="/">
+
+    If you don't pass --base-href, Flutter defaults to "/".
+
+    DO NOT replace this with a hardcoded path — the build will fail
+    with "Couldn't find the placeholder for base href".
+  -->
+  <base href="/MerajXo/">
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description"
+    content="MERAJXO — Creative portfolio of MD Meraju Islam. Motion graphics, visual effects, graphic design, automation scripts, software tools, and music.">
+
+  <!-- Google Search Console Verification -->
+  <meta name="google-site-verification" content="Mz7ki6TXUG1LIz_OwY_8MZOAot7FHsR9wj4jdAGErd0" />
+
+  <!-- iOS meta tags for mobile web app -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="MERAJXO">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Favicon — a 32×32 PNG placed at web/favicon.png -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Web App Manifest — gives install-to-home-screen + theme color -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://merajxo.github.io/MerajXo/">
+
+  <title>MERAJXO — Creative Portfolio of MD Meraju Islam</title>
+
+  <!-- ═══════════════════════════════════════════════════════════════
+       STATIC Open Graph + Twitter Card meta tags
+       These are in the RAW HTML — Telegram, WhatsApp, Facebook,
+       Discord, LinkedIn, etc. scrape these WITHOUT executing
+       JavaScript. Without these, link shares show no thumbnail.
+
+       Flutter's app_config_seo_web.dart updates these per-route
+       AFTER JS loads, but scrapers that don't run JS see these
+       static defaults instead.
+       ═══════════════════════════════════════════════════════════════ -->
+
+  <!-- Open Graph (Facebook, LinkedIn, Telegram, WhatsApp) -->
+  <meta property="og:title" content="MERAJXO — Creative Portfolio">
+  <meta property="og:description" content="Motion graphics, visual effects, graphic design, automation scripts, software tools, and music by MD Meraju Islam.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://merajxo.github.io/MerajXo/">
+  <meta property="og:site_name" content="MERAJXO">
+  <!-- OG image — use the repo logo as the default preview thumbnail.
+       For per-route thumbnails, the JS SEO updater overrides this
+       after Flutter loads (but scrapers that don't run JS see this). -->
+  <meta property="og:image" content="https://raw.githubusercontent.com/m34official/MXO/main/appConfig/logo.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MERAJXO — Creative Portfolio">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="MERAJXO — Creative Portfolio">
+  <meta name="twitter:description" content="Motion graphics, visual effects, graphic design, automation scripts, software tools, and music by MD Meraju Islam.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/m34official/MXO/main/appConfig/logo.png">
+  <meta name="twitter:site" content="@merajxo">
+  <meta name="twitter:creator" content="@merajxo">
+
+  <!-- Structured data for Google rich results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "MD Meraju Islam",
+    "url": "https://merajxo.github.io/MerajXo/",
+    "image": "https://raw.githubusercontent.com/m34official/MXO/main/appConfig/logo.png",
+    "jobTitle": "Motion Designer & Creative Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "MERAJXO"
+    },
+    "sameAs": [
+      "https://www.instagram.com/merajxo",
+      "https://www.youtube.com/@merajxo",
+      "https://github.com/m34official"
+    ],
+    "email": "mailto:merajxo@gmail.com"
+  }
+  </script>
+
+  <style>
+    /* ── iOS-inspired boot loader ─────────────────────────────── */
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+    }
+
+    #loading-container {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      background: #000;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+        'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      transition: opacity 400ms ease-out;
+      z-index: 9999;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    #loading-container.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ── Wordmark ── */
+    .wordmark {
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 4px;
+      color: rgba(255, 255, 255, 0.85);
+      text-transform: uppercase;
+    }
+
+    /* ── iOS-style spinner ── */
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 2.5px solid rgba(255, 255, 255, 0.12);
+      border-top-color: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    /* ── Status label (subtle, below spinner) ── */
+    .label {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      color: rgba(255, 255, 255, 0.4);
+      transition: opacity 200ms ease-out;
+      min-height: 16px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── Respect reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .spinner {
+        animation-duration: 2.5s;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Crawlable content for search engines (Flutter renders via JS).
+       Googlebot and other crawlers that don't execute JavaScript
+       see this text instead of an empty page. -->
+  <noscript>
+    <div style="padding: 40px; font-family: sans-serif; color: #fff; background: #000; max-width: 600px; margin: 0 auto;">
+      <h1>MD Meraju Islam — Motion Designer & Creative Developer</h1>
+      <p>Creative portfolio showcasing motion graphics, visual effects, graphic design, automation scripts, software tools, and music. Based in Bangladesh.</p>
+      <h2>Work</h2>
+      <ul>
+        <li>Motion Graphics & Title Animations</li>
+        <li>Visual Effects & Compositing</li>
+        <li>Graphic Design & Branding</li>
+        <li>Automation Scripts (PowerShell, Python)</li>
+        <li>Flutter App Development</li>
+      </ul>
+      <h2>Connect</h2>
+      <ul>
+        <li>Instagram: https://www.instagram.com/merajxo</li>
+        <li>YouTube: https://www.youtube.com/@merajxo</li>
+        <li>GitHub: https://github.com/m34official</li>
+        <li>Email: merajxo@gmail.com</li>
+      </ul>
+      <p>Visit the <a href="https://merajxo.github.io/MerajXo/">MERAJXO Portfolio</a> to see full work.</p>
+    </div>
+  </noscript>
+
+  <!-- Boot loader — minimal iOS-style. -->
+  <div id="loading-container">
+    <div class="wordmark">MerajXO</div>
+    <div class="spinner"></div>
+    <div class="label" id="progress-label">Loading</div>
+  </div>
+
+  <!-- Flutter loads here. -->
+  <script>
+    // ── SPA deep-link restoration ──────────────────────────────────
+    // GitHub Pages serves 404.html for any URL that doesn't match a
+    // real static file — including all our Flutter routes like
+    // /MerajXo/project/foo. 404.html saves the requested URL to
+    // sessionStorage and redirects here. We restore that URL via
+    // history.replaceState BEFORE Flutter boots, so Flutter's
+    // getCurrentPath() picks up the deep link and routes correctly.
+    (function () {
+      try {
+        var saved = sessionStorage.getItem('mxo_redirect');
+        if (saved) {
+          sessionStorage.removeItem('mxo_redirect');
+          // Replace the URL bar with the deep link, without triggering
+          // a navigation. The page content stays as index.html.
+          history.replaceState(null, '', saved);
+        }
+      } catch (_) { }
+    })();
+
+    // The boot loader's progress. `appProgress(value, label)` is
+    // called from main.dart during app startup (see web_bridge_web.dart).
+    var _label = document.getElementById('progress-label');
+    var _container = document.getElementById('loading-container');
+
+    function appProgress(value, label) {
+      try {
+        if (_label && label) {
+          _label.style.opacity = '0';
+          setTimeout(function () {
+            _label.textContent = label;
+            _label.style.opacity = '1';
+          }, 160);
+        }
+      } catch (_) { }
+    }
+
+    function appReady() {
+      try {
+        if (_container) {
+          _container.classList.add('fade-out');
+          setTimeout(function () {
+            if (_container && _container.parentNode) {
+              _container.parentNode.removeChild(_container);
+            }
+          }, 440);
+        }
+      } catch (_) { }
+    }
+  </script>
+
+  <!-- Flutter entry point. Generated by `flutter build web`. -->
+  <script src="main.dart.js" defer></script>
+</body>
+
+</html>
